@@ -1,0 +1,393 @@
+/* =========================================================
+   设计系统 · Design Tokens
+   ========================================================= */
+:root {
+  /* 品牌色 */
+  --acc: #4f46e5;
+  --acc-strong: #4338ca;
+  --acc-soft: #eef2ff;
+  --acc-softer: #f5f3ff;
+
+  /* 语义色 */
+  --ok: #16a34a;
+  --ok-soft: #e8f6ec;
+  --warn: #d97706;
+  --warn-soft: #fbf1e6;
+  --bad: #dc2626;
+  --bad-soft: #fce9e9;
+
+  /* 文本 */
+  --text-1: #0f172a;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+
+  /* 表面与描边 */
+  --bg: #f4f5f9;
+  --surface: #ffffff;
+  --border: #e6e8ee;
+  --border-soft: #eef0f5;
+
+  /* 圆角 */
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-full: 999px;
+
+  /* 阴影 */
+  --shadow-xs: 0 1px 2px rgb(15 23 42 / 0.05);
+  --shadow-sm: 0 1px 3px rgb(15 23 42 / 0.06), 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-md: 0 6px 18px rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 18px 48px rgb(15 23 42 / 0.16);
+
+  /* 排版与结构 */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --header-h: 60px;
+
+  /* ============ Element Plus 主题 ============ */
+  --el-color-primary: #4f46e5;
+  --el-color-primary-light-3: #7f79ec;
+  --el-color-primary-light-5: #a7a3f1;
+  --el-color-primary-light-7: #cfcdf7;
+  --el-color-primary-light-8: #e3e1fa;
+  --el-color-primary-light-9: #f2f1fc;
+  --el-color-primary-dark-2: #4038b7;
+
+  --el-color-success: #16a34a;
+  --el-color-success-light-3: #5cbf80;
+  --el-color-success-light-5: #8bd1a4;
+  --el-color-success-light-7: #b9e3c9;
+  --el-color-success-light-8: #d0eddb;
+  --el-color-success-light-9: #e8f6ec;
+  --el-color-success-dark-2: #12823b;
+
+  --el-color-warning: #d97706;
+  --el-color-warning-light-3: #e4a051;
+  --el-color-warning-light-5: #ecbb83;
+  --el-color-warning-light-7: #f4d6b4;
+  --el-color-warning-light-8: #f7e4cd;
+  --el-color-warning-light-9: #fbf1e6;
+  --el-color-warning-dark-2: #ae5f05;
+
+  --el-color-danger: #dc2626;
+  --el-color-danger-light-3: #e66767;
+  --el-color-danger-light-5: #ee9393;
+  --el-color-danger-light-7: #f4bebe;
+  --el-color-danger-light-8: #f8d4d4;
+  --el-color-danger-light-9: #fce9e9;
+  --el-color-danger-dark-2: #b01e1e;
+
+  --el-color-error: #dc2626;
+  --el-color-error-light-3: #e66767;
+  --el-color-error-light-5: #ee9393;
+  --el-color-error-light-7: #f4bebe;
+  --el-color-error-light-8: #f8d4d4;
+  --el-color-error-light-9: #fce9e9;
+  --el-color-error-dark-2: #b01e1e;
+
+  --el-color-info: #64748b;
+  --el-color-info-light-3: #929eae;
+  --el-color-info-light-5: #b2b9c5;
+  --el-color-info-light-7: #d1d5dc;
+  --el-color-info-light-8: #e0e3e8;
+  --el-color-info-light-9: #f0f1f3;
+  --el-color-info-dark-2: #505d6f;
+
+  --el-font-family: var(--font-sans);
+  --el-font-size-base: 14px;
+  --el-text-color-primary: var(--text-1);
+  --el-text-color-regular: var(--text-2);
+  --el-text-color-secondary: var(--text-3);
+  --el-text-color-placeholder: #a7b0bf;
+  --el-border-color: var(--border);
+  --el-border-color-light: var(--border-soft);
+  --el-border-color-lighter: var(--border-soft);
+  --el-fill-color-light: #f7f8fb;
+  --el-fill-color-lighter: #fafbfd;
+  --el-bg-color-page: var(--bg);
+  --el-border-radius-base: 8px;
+  --el-border-radius-small: 6px;
+  --el-border-radius-round: 999px;
+  --el-box-shadow-light: var(--shadow-sm);
+}
+
+/* =========================================================
+   基础
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7cdd8;
+  border: 3px solid transparent;
+  border-radius: var(--r-full);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #adb6c4;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* =========================================================
+   页面布局工具类
+   ========================================================= */
+.page {
+  padding: 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.page-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: 18px;
+  box-shadow: var(--shadow-xs);
+}
+
+.page-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 14px;
+  color: var(--text-1);
+}
+
+.card-narrow {
+  max-width: 640px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.toolbar-actions .el-button + .el-button,
+.nav .el-button + .el-button {
+  margin-left: 0;
+}
+
+.field {
+  flex: 1 1 170px;
+  max-width: 220px;
+  min-width: 0;
+}
+
+.field-sm {
+  flex: 0 1 160px;
+  max-width: 180px;
+  min-width: 0;
+}
+
+.pager {
+  margin-top: 14px;
+  justify-content: flex-end;
+}
+
+.table-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 状态胶囊 */
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.pill-pending {
+  background: var(--acc-soft);
+  color: var(--acc-strong);
+}
+
+.pill-selected {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.pill-banned {
+  background: var(--bad-soft);
+  color: var(--bad);
+}
+
+.pill-suspicious {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.pill-unknown {
+  background: #f1f3f7;
+  color: var(--text-2);
+}
+
+/* =========================================================
+   Element Plus 细节打磨
+   ========================================================= */
+.el-button {
+  font-weight: 500;
+}
+
+.el-button--large {
+  border-radius: var(--r-sm);
+}
+
+.el-input__wrapper,
+.el-select__wrapper,
+.el-textarea__inner {
+  border-radius: var(--r-sm);
+}
+
+.el-table {
+  --el-table-border-color: var(--border-soft);
+  --el-table-header-bg-color: #f8f9fc;
+  --el-table-header-text-color: var(--text-2);
+  --el-table-row-hover-bg-color: #f8f9fc;
+  --el-table-text-color: var(--text-1);
+  font-size: 14px;
+}
+
+.el-table th.el-table__cell {
+  font-weight: 600;
+}
+
+.el-table .cell {
+  word-break: break-word;
+}
+
+.el-pagination {
+  --el-pagination-font-size: 13px;
+  column-gap: 4px;
+}
+
+.el-dialog {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.el-dialog__title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.el-message-box {
+  border-radius: var(--r-md);
+  max-width: calc(100vw - 32px);
+}
+
+.el-message {
+  border-radius: 10px;
+}
+
+.el-tabs__item {
+  font-weight: 500;
+}
+
+.el-tabs__item.is-active {
+  font-weight: 600;
+}
+
+.el-drawer {
+  --el-drawer-padding-primary: 20px;
+}
+
+/* =========================================================
+   响应式
+   ========================================================= */
+@media (max-width: 767px) {
+  .page {
+    padding: 12px;
+  }
+
+  .page-card {
+    padding: 14px;
+    border-radius: var(--r-md);
+  }
+
+  .toolbar {
+    gap: 8px;
+  }
+
+  .field,
+  .field-sm {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .toolbar-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .toolbar-actions .el-button {
+    flex: 1 1 0;
+  }
+
+  .pager {
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+
+  .el-dialog {
+    --el-dialog-margin-top: 6vh;
+  }
+
+  :root {
+    --el-date-editor-width: 100%;
+    --el-date-editor-daterange-width: 100%;
+  }
+}
