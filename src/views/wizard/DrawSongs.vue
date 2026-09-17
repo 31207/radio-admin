@@ -110,7 +110,12 @@
       <!-- 8 结果 -->
       <div v-else class="step-body">
         <h2>今天的广播歌单（{{ w.result?.length || 0 }} 首）</h2>
-        <p class="hint">提示：勾选本次要选用的歌曲（默认全选）；不一定要在对应平台播放，别的平台有的话也可以复制歌曲信息搜索播放；只能播一部分的歌，点「换一首」替换。</p>
+        <p class="hint">提示：</p>
+        <p class="hint">1. 如果出现同名但不同音乐软件的歌曲，可以点击“换一首”</p>
+        <p class="hint">2. 把这些选中的歌曲播放一遍，就算是一次每日广播</p>
+        <p class="hint">3. 不一定要在对应的音乐软件播放，别的音乐软件有也可以在那里播放，只需点击“复制歌曲信息”，然后去那个音乐软件搜索播放即可</p>
+        <p class="hint">4. 把放完的歌曲勾选上，没来得及放的就不要勾选，然后点击“一键选用这x首”</p>
+        <p class="hint">5. 被选用的歌曲可在播放历史查看，可以生成播放历史图片并发送到频道里</p>
         <el-alert v-if="w.selectedDone" type="success" :closable="false" title="已选用这批歌曲，通知将由机器人定时发送" style="margin-bottom: 12px" />
         <div v-if="w.result" class="song-grid">
           <div v-for="(s, i) in w.result" :key="s.id" class="song-card">
