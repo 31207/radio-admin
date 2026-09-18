@@ -84,6 +84,7 @@
       <template #footer>
         <el-button @click="imageVisible = false">关闭</el-button>
         <el-button v-if="previewUrl" type="success" @click="downloadImage">下载图片</el-button>
+        <el-button v-if="previewUrl" @click="copyImage">复制图片到剪贴板</el-button>
         <el-button type="primary" :loading="generating" @click="generateImage">生成</el-button>
       </template>
     </el-dialog>
@@ -217,6 +218,22 @@ function downloadImage() {
   a.download = `播放记录_${new Date().toISOString().slice(0, 10)}.png`
   a.click()
   URL.revokeObjectURL(a.href)
+}
+
+async function copyImage() {
+  if (!previewBlob.value) return
+  if (!navigator.clipboard || typeof ClipboardItem === 'undefined') {
+    ElMessage.warning('当前浏览器不支持复制图片到剪贴板，请使用下载')
+    return
+  }
+  try {
+    await navigator.clipboard.write([
+      new ClipboardItem({ [previewBlob.value.type || 'image/png']: previewBlob.value }),
+    ])
+    ElMessage.success('图片已复制到剪贴板')
+  } catch {
+    ElMessage.error('复制失败，请使用下载图片')
+  }
 }
 
 onMounted(reload)
