@@ -6,7 +6,7 @@
 
       <div class="section">
         <h4>管理员（admins）</h4>
-        <p class="desc">可重置点歌次数、禁播/解禁歌曲、查看/发送选中通知</p>
+        <p class="desc">可重置点歌次数、禁播/解禁歌曲</p>
         <el-select
           v-model="admins"
           multiple

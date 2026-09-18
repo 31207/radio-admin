@@ -64,7 +64,6 @@ const MENU: { path: string; label: string; icon: IconName }[] = [
   { path: '/history', label: '播放历史', icon: 'history' },
   { path: '/users', label: '用户管理', icon: 'users' },
   { path: '/permissions', label: '权限白名单', icon: 'shield' },
-  { path: '/notices', label: '通知状态', icon: 'bell' },
   { path: '/wizard', label: '引导式操作', icon: 'sparkles' },
 ]
 

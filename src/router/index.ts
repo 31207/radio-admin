@@ -19,7 +19,6 @@ const router = createRouter({
         { path: 'history', component: () => import('@/views/History.vue'), meta: { title: '播放历史' } },
         { path: 'users', component: () => import('@/views/Users.vue'), meta: { title: '用户管理' } },
         { path: 'permissions', component: () => import('@/views/Permissions.vue'), meta: { title: '权限白名单' } },
-        { path: 'notices', component: () => import('@/views/Notices.vue'), meta: { title: '通知状态' } },
         { path: 'wizard', component: () => import('@/views/wizard/WizardCenter.vue'), meta: { title: '引导式操作' } },
         { path: 'wizard/screen', component: () => import('@/views/wizard/ScreenSongs.vue'), meta: { title: '筛选歌曲' } },
         { path: 'wizard/draw', component: () => import('@/views/wizard/DrawSongs.vue'), meta: { title: '每日选曲' } },

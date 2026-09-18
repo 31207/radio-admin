@@ -60,22 +60,6 @@ export interface StatsData {
 
 export type Verdict = 'safe' | 'suspicious' | 'banned' | 'unknown'
 
-export interface NoticeItem {
-  id: number
-  name: string
-  artist: string
-  selected_at: string
-  attempts: number
-  failed_user_ids: string[]
-  user_ids?: string[]
-}
-
-export interface NoticeStatus {
-  pending: NoticeItem[]
-  sent_count: number
-  failed: NoticeItem[]
-}
-
 export interface AgentVerdict {
   song_id: number
   name: string

@@ -116,7 +116,7 @@
         <p class="hint">3. 不一定要在对应的音乐软件播放，别的音乐软件有也可以在那里播放，只需点击“复制歌曲信息”，然后去那个音乐软件搜索播放即可</p>
         <p class="hint">4. 把放完的歌曲勾选上，没来得及放的就不要勾选，然后点击“一键选用这x首”</p>
         <p class="hint">5. 被选用的歌曲可在播放历史查看，可以生成播放历史图片并发送到频道里</p>
-        <el-alert v-if="w.selectedDone" type="success" :closable="false" title="已选用这批歌曲，通知将由机器人定时发送" style="margin-bottom: 12px" />
+        <el-alert v-if="w.selectedDone" type="success" :closable="false" title="已选用这批歌曲，用户可在机器人里用「选用记录」查看" style="margin-bottom: 12px" />
         <div v-if="w.result" class="song-grid">
           <div v-for="(s, i) in w.result" :key="s.id" class="song-card">
             <el-checkbox
@@ -331,7 +331,7 @@ async function selectAll() {
   const ids = w.result.filter((s) => checked.value.has(s.id)).map((s) => s.id)
   if (!ids.length) return
   await ElMessageBox.confirm(
-    `确定选用这 ${ids.length} 首歌曲吗？\n选用后将记入播放历史并通知点歌用户。`,
+    `确定选用这 ${ids.length} 首歌曲吗？\n选用后将记入播放历史。`,
     '一键选用',
     { type: 'warning' },
   )
@@ -339,7 +339,7 @@ async function selectAll() {
   try {
     const res = await api.selectMany(ids, '每日选曲向导')
     w.selectedDone = true
-    ElMessage.success(`已选用 ${res.count} 首，通知将由机器人定时发送`)
+    ElMessage.success(`已选用 ${res.count} 首`)
   } finally {
     selecting.value = false
   }

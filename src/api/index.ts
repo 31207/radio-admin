@@ -4,7 +4,6 @@ import type {
   DrawFilters,
   DrawSong,
   HistoryRow,
-  NoticeStatus,
   PoolItem,
   RequestRow,
   StatsData,
@@ -114,12 +113,6 @@ export const api = {
   },
   async savePermissions(payload: { admins: string[]; super_admins: string[] }) {
     await http.put('/api/permissions', payload)
-  },
-
-  // ---- 通知状态 ----
-  async noticeStatus() {
-    const { data } = await http.get<{ data: NoticeStatus }>('/api/notices/status')
-    return data.data
   },
 
   // ---- 筛选 agent ----
