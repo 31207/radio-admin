@@ -28,8 +28,13 @@
           </template>
         </el-table-column>
         <el-table-column prop="req_count" label="点歌数" width="80" />
-        <el-table-column label="点歌人" min-width="140" show-overflow-tooltip>
-          <template #default="{ row }">{{ requestersText(row.requesters) }}</template>
+        <el-table-column label="点歌人" min-width="180" show-overflow-tooltip>
+          <template #default="{ row }">
+            <template v-if="row.requesters && row.requesters.length">
+              <UidText v-for="u in row.requesters" :key="u" :uid="u" class="requester" />
+            </template>
+            <span v-else>-</span>
+          </template>
         </el-table-column>
         <el-table-column label="最近点歌" width="150">
           <template #default="{ row }">{{ fmtTime(row.last_time) }}</template>
@@ -66,7 +71,12 @@
       align-center
     >
       <el-table :data="detailRows" size="small">
-        <el-table-column prop="user_id" label="点歌人" width="140" />
+        <el-table-column label="点歌人" min-width="180">
+          <template #default="{ row }">
+            <UidText v-if="row.user_id" :uid="row.user_id" />
+            <span v-else>-</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="remark" label="备注" min-width="120" show-overflow-tooltip />
         <el-table-column prop="day_count" label="当日次数" width="90" />
         <el-table-column label="时间" width="150">
@@ -82,6 +92,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { onMounted, ref } from 'vue'
 
 import { api } from '@/api'
+import UidText from '@/components/UidText.vue'
 import type { PoolItem, RequestRow } from '@/types'
 
 const rows = ref<PoolItem[]>([])
@@ -97,10 +108,6 @@ const selIds = ref<number[]>([])
 const detailVisible = ref(false)
 const detailSong = ref<PoolItem | null>(null)
 const detailRows = ref<RequestRow[]>([])
-
-function requestersText(list: string[]) {
-  return list && list.length ? list.join('、') : '-'
-}
 
 function fmtTime(t?: string | null) {
   return t ? t.slice(5, 16).replace('T', ' ') : '-'
@@ -163,3 +170,9 @@ async function openDetail(row: PoolItem) {
 
 onMounted(reload)
 </script>
+
+<style scoped>
+.requester {
+  margin-right: 4px;
+}
+</style>

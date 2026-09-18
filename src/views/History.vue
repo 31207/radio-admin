@@ -25,8 +25,11 @@
         <el-table-column type="selection" width="42" />
         <el-table-column prop="name" label="歌名" min-width="150" show-overflow-tooltip />
         <el-table-column prop="artist" label="歌手" width="150" show-overflow-tooltip />
-        <el-table-column prop="user_id" label="点歌人" width="130">
-          <template #default="{ row }">{{ row.user_id || '-' }}</template>
+        <el-table-column prop="user_id" label="点歌人" min-width="200" show-overflow-tooltip>
+          <template #default="{ row }">
+            <UidText v-if="row.user_id" :uid="row.user_id" />
+            <span v-else>-</span>
+          </template>
         </el-table-column>
         <el-table-column prop="note" label="备注" min-width="120" show-overflow-tooltip />
         <el-table-column label="播放时间" width="150">
@@ -92,6 +95,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { onMounted, ref } from 'vue'
 
 import { api } from '@/api'
+import UidText from '@/components/UidText.vue'
 import type { HistoryRow } from '@/types'
 
 const rows = ref<HistoryRow[]>([])

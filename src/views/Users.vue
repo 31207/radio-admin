@@ -2,14 +2,18 @@
   <div class="page">
     <div class="page-card">
       <div class="toolbar">
-        <el-input v-model="keyword" class="field" placeholder="按 QQ 号搜索" clearable />
+        <el-input v-model="keyword" class="field" placeholder="按用户ID搜索" clearable />
         <div class="toolbar-actions">
           <el-button @click="load">刷新</el-button>
         </div>
       </div>
 
       <el-table :data="filtered" v-loading="loading">
-        <el-table-column prop="user_id" label="QQ 号" min-width="150" show-overflow-tooltip />
+        <el-table-column prop="user_id" label="用户ID" min-width="200" show-overflow-tooltip>
+          <template #default="{ row }">
+            <UidText :uid="row.user_id" />
+          </template>
+        </el-table-column>
         <el-table-column label="状态" width="100">
           <template #default="{ row }">
             <span v-if="row.is_banned" class="pill pill-banned">已封禁</span>
@@ -41,6 +45,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { computed, onMounted, ref } from 'vue'
 
 import { api } from '@/api'
+import UidText from '@/components/UidText.vue'
 import type { UserRow } from '@/types'
 
 const rows = ref<UserRow[]>([])

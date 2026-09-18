@@ -2,7 +2,10 @@
   <div class="page">
     <div class="page-card card-narrow-wide">
       <h3 class="page-title">选中通知状态</h3>
-      <p class="tip">bot 每周五 19:00 自动发送；失败用户只重试、满 3 轮放弃。可在 QQ 里用「发送通知」手动触发。</p>
+      <p class="tip">
+        bot 每周五 19:00 自动发送；失败用户只重试、满 3 轮放弃，审核被拒的用户不再重试。可在 QQ
+        里用「发送通知」手动触发。
+      </p>
 
       <div class="stats">
         <div class="stat">
@@ -31,8 +34,13 @@
             <el-table-column label="已尝试" width="80">
               <template #default="{ row }">{{ row.attempts }} 轮</template>
             </el-table-column>
-            <el-table-column label="将通知" min-width="140">
-              <template #default="{ row }">{{ (row.user_ids || []).join('、') }}</template>
+            <el-table-column label="将通知" min-width="180">
+              <template #default="{ row }">
+                <template v-if="row.user_ids && row.user_ids.length">
+                  <UidText v-for="u in row.user_ids" :key="u" :uid="u" class="notice-uid" />
+                </template>
+                <span v-else>-</span>
+              </template>
             </el-table-column>
           </el-table>
         </el-tab-pane>
@@ -45,8 +53,13 @@
             <el-table-column label="选用时间" width="150">
               <template #default="{ row }">{{ fmtTime(row.selected_at) }}</template>
             </el-table-column>
-            <el-table-column label="未送达用户" min-width="140">
-              <template #default="{ row }">{{ row.failed_user_ids.join('、') }}</template>
+            <el-table-column label="未送达用户" min-width="180">
+              <template #default="{ row }">
+                <template v-if="row.failed_user_ids.length">
+                  <UidText v-for="u in row.failed_user_ids" :key="u" :uid="u" class="notice-uid" />
+                </template>
+                <span v-else>-</span>
+              </template>
             </el-table-column>
           </el-table>
         </el-tab-pane>
@@ -61,6 +74,7 @@
 import { onMounted, ref } from 'vue'
 
 import { api } from '@/api'
+import UidText from '@/components/UidText.vue'
 import type { NoticeStatus } from '@/types'
 
 const status = ref<NoticeStatus>({ pending: [], sent_count: 0, failed: [] })
@@ -129,6 +143,10 @@ onMounted(load)
 
 .refresh {
   margin-top: 12px;
+}
+
+.notice-uid {
+  margin-right: 4px;
 }
 
 @media (max-width: 767px) {
